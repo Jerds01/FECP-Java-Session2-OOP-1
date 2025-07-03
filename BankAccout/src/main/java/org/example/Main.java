@@ -6,20 +6,44 @@ import java.util.Scanner;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void createBankAccount(String name, String accountNumber){
+    public static void createBankAccount(ArrayList<BankAccount> accounts ,String name, int accountNumber){
+        int deposit =0;
+        BankAccount newAccount = new BankAccount(accountNumber, name, deposit);
+        accounts.add(newAccount);
         System.out.println("Account created successfully!");
     }
-    public static void createBankAccount(String name, String accountNumber, int deposit){
-
+    public static void createBankAccount(String name, int accountNumber, int deposit){
+        System.out.println("Account created successfully!");
     }
+
+    public static void displayAllAccounts(ArrayList<BankAccount> accounts){
+        int allAccountsPopulation = accounts.size();
+        for (int i=0; i < allAccountsPopulation; i++){
+            System.out.println("-----------------------------");
+            System.out.println("Account Name: " +accounts.get(i).getAccountName());
+            System.out.println("Account Number: " + accounts.get(i).getAccountNumber());
+        }
+    }
+    public static void checkAccountBalance(int accountNumber){
+        System.out.println("Account Balance");
+    }
+
+    public static void depositToAccountNumber(int accountNumber){
+        System.out.println("Account Number");
+    }
+
+    public static void withdrawFromAccountNumber(int accountNumber){
+        System.out.println("You have successfully withdrawn: ");
+    }
+
     public static void main(String[] args) {
         int choice = 0;
         String yesNo;
-        String bankAccountNumber;
+        int bankAccountNumber;
         String bankHolderName;
         Scanner scanner = new Scanner(System.in);
         int deposit;
-        ArrayList<BankAccount> bankAccount= new ArrayList<>();
+        ArrayList<BankAccount> bankAccounts= new ArrayList<>();
 
 
 
@@ -37,8 +61,8 @@ public class Main {
             switch (choice){
                 case 1:
                     System.out.println("Enter Account Number: ");
-                    bankAccountNumber = scanner.next();
-                    System.out.println("Enter Holder Number: ");
+                    bankAccountNumber = scanner.nextInt();
+                    System.out.println("Enter Holder Name: ");
                     bankHolderName = scanner.next();
                     System.out.println("Initial Deposit? (yes/no): ");
                     yesNo = scanner.next().toLowerCase();
@@ -46,26 +70,34 @@ public class Main {
                     if (yesNo.equals("yes")) {
                         System.out.println("Enter initial deposit amount: ");
                         deposit = scanner.nextInt();
-                        createBankAccount(bankAccountNumber, bankHolderName, deposit);
+                        createBankAccount(bankHolderName, bankAccountNumber,deposit);
                         break;
                     }
-                    createBankAccount(bankAccountNumber,bankHolderName);
+                    createBankAccount(bankAccounts,bankHolderName,bankAccountNumber);
                     break;
 
 
                 case 2:
+                    displayAllAccounts(bankAccounts);
                     break;
 
-
                 case 3:
+                    System.out.println("Enter Account Number: ");
+                    bankAccountNumber = scanner.nextInt();
+                    checkAccountBalance(bankAccountNumber);
                     break;
 
 
                 case 4:
+                    System.out.println("Enter Account Number: ");
+                    bankAccountNumber = scanner.nextInt();
+                    depositToAccountNumber(bankAccountNumber);
                     break;
 
-
                 case 5:
+                    System.out.println("Enter Account Number: ");
+                    bankAccountNumber = scanner.nextInt();
+                    withdrawFromAccountNumber(bankAccountNumber);
                     break;
 
             }
