@@ -1,17 +1,22 @@
 package org.example;
 
 public class BankAccount {
-    private String accountNumber;
+    private int accountNumber;
     private String accountName;
     private double balance;
 
-    public BankAccount(String accountNumber, String accountName, int deposit, int balance) {
+    public BankAccount(int accountNumber, String accountName, double deposit, double balance) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.balance = balance;
     }
 
-    public String getAccountNumber() {
+    public BankAccount(int accountNumber, String accountName, double deposit){
+        this.accountNumber = accountNumber;
+        this.accountName = accountName;
+    }
+
+    public int getAccountNumber() {
         return accountNumber;
     }
 
@@ -23,7 +28,7 @@ public class BankAccount {
         return balance;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -31,7 +36,7 @@ public class BankAccount {
         this.accountName = accountName;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }
